@@ -5,11 +5,11 @@ O back-end desse projeto é em `PHP` e o seu front-end em `Angular`
 
 ## Requisitos
 
-.PHP
-.MySQL
-.NodeJS
-.Angular
-.XAMPP
+- PHP
+- MySQL
+- NodeJS
+- Angular
+- XAMPP
 
 Obs.: Neste projeto utilizei o aplicativo XAMPP para a disponibilização do ambiente e do MySQL.
 
