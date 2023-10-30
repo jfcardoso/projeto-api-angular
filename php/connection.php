@@ -1,4 +1,5 @@
 <?php
+
 //variáveis de acesso
 $url = "localhost";
 $user = "root";
