@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Curso } from './curso';
+import { CursoService } from './curso.service';
 
 @Component({
   selector: 'app-curso',
@@ -8,12 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CursoComponent implements OnInit {
 
+  //url base
+  url = "http://localhost:8080/api/php/";
+
+  //vetor para armazenar os cursos obtidos
+  cursos: Curso[] = []
+  
   constructor (
-    private httpClient: HttpClient
+    private cursoService: CursoService
   ){}
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    //ao iniciar a aplicação, os cursos são carregados
+    this.selecionar()
   }
 
   cadastrar(){
@@ -21,7 +30,11 @@ export class CursoComponent implements OnInit {
   }
 
   selecionar(){
-    alert("Cadastro selecionado com sucesso.");
+    this.cursoService.obterCursos().subscribe(
+      (res: Curso[]) => {
+        this.cursos = res;
+      }
+    )
   }
 
   alterar(){
