@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 
@@ -36,6 +36,22 @@ export class CursoService {
                 .pipe( map((res:any)=>{
                   this.cursos.push(res['cursos']);
                   return this.cursos;
+                }))    
+  }
+
+  //remover um curso
+  removerCurso(c: Curso):Observable<Curso[]>{
+
+    const params = new HttpParams().set("idCurso", c.idCurso!.toString());
+
+    return this.httpClientService.delete(this.url +'excluir', {params: params})
+                .pipe( map((res:any)=>{
+                  
+                  const filtro = this.cursos.filter((curso)=>{
+                    return +curso['idCurso'] !== +c.idCurso;
+                  });
+
+                  return this.cursos = filtro;
                 }))    
   }
 
