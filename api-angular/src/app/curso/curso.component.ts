@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,26 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CursoComponent implements OnInit {
 
-  constructor (){}
+  constructor (
+    private httpClient: HttpClient
+  ){}
 
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
 
   cadastrar(){
-    alert("Cadastro realizado com sucesso")
+    alert("Cadastro realizado com sucesso");
   }
 
   selecionar(){
-    alert("Cadastro selecionado com sucesso.")
+    alert("Cadastro selecionado com sucesso.");
   }
 
   alterar(){
-    alert("Cadastro alterado com sucesso.")
+    alert("Cadastro alterado com sucesso.");
   }
 
   excluir(){
-    alert("Cadastro excluído com sucesso.")
+    alert("Cadastro excluído com sucesso.");
   }
 
 }
