@@ -1,28 +1,28 @@
 <?php
-//criando uma conexão
-include("connection.php");
+//incluindo uma conexão
+include("conexao.php");
 
 //Preparando o comando SQL
 $sql = "SELECT * FROM cursos";
 
 //executando a query no BD
-$execute = mysqli_query($connection,$sql);
+$executar = mysqli_query($conn, $sql);
 
 //laço para posteiormente popular o json
 $cursos = [];
-$index = 0;
+$indice = 0;
 
-while ($line = mysqli_fetch_assoc($execute)) {
-    $cursos[$index]['idCurso'] = $line['idCurso'];
-    $cursos[$index]['nomeCurso'] = $line['nomeCurso'];
-    $cursos[$index]['valorCurso'] = $line['valorCurso'];
+while ($linha = mysqli_fetch_assoc($executar)) {
+    $cursos[$indice]['idCurso'] = $linha['idCurso'];
+    $cursos[$indice]['nomeCurso'] = $linha['nomeCurso'];
+    $cursos[$indice]['valorCurso'] = $linha['valorCurso'];
 
-    $index++;
+    $indice++;
 }
 
 //Json
-json_encode(['cursos'=>$cursos]);
+json_encode(['cursos']=>$cursos);
 
-//var_dump($cursos);
+var_dump($cursos);
 
 ?>
