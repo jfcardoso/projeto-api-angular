@@ -22,12 +22,21 @@ export class CursoService {
 
   //obter todos os cursos
   obterCursos():Observable<Curso[]>{
-    return this.httpClientService.get(this.url + "listar").pipe(
+    return this.httpClientService.get(this.url + 'listar').pipe(
       map((res: any) => { //sem o any ele espera receber um Object, dando erro.
         this.cursos = res['cursos'];
         return this.cursos;
       })
     )    
+  }
+
+  //cadastrar um novo curso
+  cadastrarCurso(c:Curso):Observable<Curso[]>{
+    return this.httpClientService.post(this.url +'cadastrar', {cursos:c})
+                .pipe( map((res:any)=>{
+                  this.cursos.push(res['cursos']);
+                  return this.cursos;
+                }))    
   }
 
 }

@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Curso } from './curso';
 import { CursoService } from './curso.service';
@@ -14,7 +13,9 @@ export class CursoComponent implements OnInit {
   url = "http://localhost:8080/api/php/";
 
   //vetor para armazenar os cursos obtidos
-  cursos: Curso[] = []
+  cursos: Curso[] = [];
+
+  curso = new Curso();
   
   constructor (
     private cursoService: CursoService
@@ -26,7 +27,20 @@ export class CursoComponent implements OnInit {
   }
 
   cadastrar(){
-    alert("Cadastro realizado com sucesso");
+   this.cursoService.cadastrarCurso(this.curso).subscribe(
+      (res: Curso[]) => {
+        
+        // add dados ao vetor
+        this.cursos = res;
+
+        //limpando os atributos
+        this.curso.nomeCurso = "";
+        this.curso.valorCurso = 0;
+
+        //atualiza a listagem
+        this.selecionar();
+    } 
+   )
   }
 
   selecionar(){
