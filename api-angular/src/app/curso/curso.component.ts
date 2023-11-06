@@ -29,7 +29,7 @@ export class CursoComponent implements OnInit {
   cadastrar(){
    this.cursoService.cadastrarCurso(this.curso).subscribe(
       (res: Curso[]) => {
-        
+
         // add dados ao vetor
         this.cursos = res;
 
@@ -55,8 +55,15 @@ export class CursoComponent implements OnInit {
     alert("Cadastro alterado com sucesso.");
   }
 
-  excluir(){
-    alert("Cadastro excluído com sucesso.");
+  remover(){
+    this.cursoService.removerCurso(this.curso).subscribe(
+      (res: Curso[]) => {
+        this.cursos = res;
+
+        this.curso.nomeCurso = "";
+        this.curso.valorCurso = 0;
+      }
+    )
   }
 
 }

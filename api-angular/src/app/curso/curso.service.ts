@@ -45,10 +45,9 @@ export class CursoService {
     const params = new HttpParams().set("idCurso", c.idCurso!.toString());
 
     return this.httpClientService.delete(this.url +'excluir', {params: params})
-                .pipe( map((res:any)=>{
-                  
+                .pipe( map((res:any)=>{                  
                   const filtro = this.cursos.filter((curso)=>{
-                    return +curso['idCurso'] !== +c.idCurso;
+                    return +curso['idCurso']! !== +curso.idCurso!;
                   });
 
                   return this.cursos = filtro;
