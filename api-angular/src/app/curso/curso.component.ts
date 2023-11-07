@@ -52,7 +52,19 @@ export class CursoComponent implements OnInit {
   }
 
   alterar(c: Curso){
-    alert("Cadastro alterado com sucesso.");
+   this.cursoService.atualizarCurso(this.curso).subscribe(
+    (res) => {
+      //atualiza o vetor
+      this.cursos = res;
+
+      //limpa os valores do objeto
+      this.curso.nomeCurso = "";
+      this.curso.valorCurso = 0;
+
+      //atualiza a listagem de cursos
+      this.selecionar();
+    }
+   )
   }
 
   remover(c: Curso){
