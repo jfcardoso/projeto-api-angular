@@ -1,6 +1,18 @@
+<form>
+    <label>Curso</label>
+    <input type="text" name="nomeCurso" [(ngModel)]="curso.nomeCurso">
+    <br>
+    <label>Valor</label>
+    <input type="text" name="valorCurso" [(ngModel)]="curso.valorCurso">
+    <br>
+    <button (click)="cadastrar(this.curso)">Cadastrar</button>
+    <button (click)="alterar(this.curso)">Alterar</button>
+    <button (click)="remover(this.curso)">Remover</button>
+</form>
 <table border="1">
     <tr *ngFor="let c of cursos">
         <td>{{c.nomeCurso}}</td>
         <td>{{c.valorCurso}}</td>
+        <td><button (click)="selecionarCursoEspecifico(c)">Selecionar Curso</button></td>
     </tr>
 </table>

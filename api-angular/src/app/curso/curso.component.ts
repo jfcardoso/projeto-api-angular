@@ -26,7 +26,7 @@ export class CursoComponent implements OnInit {
     this.selecionar()
   }
 
-  cadastrar(){
+  cadastrar(c:Curso){
    this.cursoService.cadastrarCurso(this.curso).subscribe(
       (res: Curso[]) => {
 
@@ -51,11 +51,11 @@ export class CursoComponent implements OnInit {
     )
   }
 
-  alterar(){
+  alterar(c: Curso){
     alert("Cadastro alterado com sucesso.");
   }
 
-  remover(){
+  remover(c: Curso){
     this.cursoService.removerCurso(this.curso).subscribe(
       (res: Curso[]) => {
         this.cursos = res;
@@ -64,6 +64,13 @@ export class CursoComponent implements OnInit {
         this.curso.valorCurso = 0;
       }
     )
+  }
+
+  selecionarCursoEspecifico(c: Curso){
+    this.curso.idCurso = c.idCurso;
+    this.curso.nomeCurso = c.nomeCurso;
+    this.curso.valorCurso = c.valorCurso;
+
   }
 
 }
